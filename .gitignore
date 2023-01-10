@@ -1,0 +1,11 @@
+# Dependency directories
+node_modules/
+
+# Parcel generate
+dist
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# IDE / Editor
+.idea

@@ -1,0 +1,17 @@
+{
+  "name": "yandex_messenger",
+  "version": "1.0.0",
+  "description": "Учебный проект создания мессенджера",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.hbs",
+    "build": "parcel build index.hbs"
+  },
+  "author": "Alexander Kucher",
+  "license": "ISC",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-sass": "^2.8.2",
+    "parcel": "^2.8.2"
+  }
+}
