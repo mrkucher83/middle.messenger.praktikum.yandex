@@ -4,7 +4,7 @@
   "description": "Учебный проект создания мессенджера",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel src/index.html --no-source-maps --target default --dist-dir ./build",
+    "start": "npm run build && node ./server.js",
     "build": "parcel build src/index.html --no-source-maps --target default --dist-dir ./build",
     "watch": "parcel watch"
   },
