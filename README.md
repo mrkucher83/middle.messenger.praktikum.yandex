@@ -14,3 +14,7 @@
 
 ## Макеты
 https://app.moqups.com/87Y1H17Y4XNxhmieaYDpBPRmrhuVl8mA/edit/page/ad64222d5
+
+## Хостинг
+https://statuesque-pie-169563.netlify.app
+
