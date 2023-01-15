@@ -3,7 +3,7 @@ node_modules/
 
 # Parcel generate
 dist
-bild
+build
 
 # parcel-bundler cache (https://parceljs.org/)
 .parcel-cache
