@@ -1,0 +1,19 @@
+.serverError {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__500 {
+    font-size: 40px;
+  }
+
+  &__text {
+    font-size: 20px;
+  }
+
+  &__link {
+    font-size: 11px;
+    color: #3369F3;
+    text-decoration: none;
+  }
+}

@@ -2,16 +2,28 @@
   "name": "yandex_messenger",
   "version": "1.0.0",
   "description": "Учебный проект создания мессенджера",
-  "main": "index.js",
+  "source": "src/index.html",
   "scripts": {
-    "dev": "parcel index.hbs",
-    "build": "parcel build index.hbs"
+    "start": "parcel src/index.html --no-source-maps --target default --dist-dir ./build",
+    "build": "parcel build src/index.html --no-source-maps --target default --dist-dir ./build",
+    "watch": "parcel watch"
   },
   "author": "Alexander Kucher",
   "license": "ISC",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-inline-string": "^2.8.2",
     "@parcel/transformer-sass": "^2.8.2",
-    "parcel": "^2.8.2"
+    "parcel": "^2.8.2",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "parcel-reporter-static-files-copy": "^1.5.0",
+    "parcel-transformer-hbs": "^1.0.4"
+  },
+  "targets": {
+    "default": {
+      "sourceMap": false
+    }
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7"
   }
 }

@@ -1,0 +1,19 @@
+<div class="profile">
+    <div class="profile__photo">
+        <img class="profile__image" src="user.png" alt="userPhoto">
+        <h3 class="profile__name">Иван</h3>
+    </div>
+    <div class="profile__data">
+        {{> input type='text' name='FirstName' placeholder='Ivan' value='Alexander' readonly=true}}
+        {{> input type='text' name='SecondName' placeholder='Ivanov' value='' readonly=true}}
+        {{> input type='text' name='Login' placeholder='IvanIvanov' value='' readonly=true}}
+        {{> input type='email' name='Email' placeholder='ivanov@gmail.com' value='' readonly=true}}
+        {{> input type='tel' name='Phone' placeholder='+71234567890' value='' readonly=true}}
+        {{> input type='text' name='ChatName' placeholder='Иван' value='' readonly=true}}
+    </div>
+    <div class="profile__links">
+        <a class="profile__links-item" href="/profile_edit">Change the data</a>
+        <a class="profile__links-item" href="/profile_password">Change the password</a>
+        <a class="profile__links-item red" href="/auth">Logout</a>
+    </div>
+</div>

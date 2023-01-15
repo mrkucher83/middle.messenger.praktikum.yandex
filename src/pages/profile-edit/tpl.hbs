@@ -1,0 +1,16 @@
+<div class="profile-edit">
+    <div class="profile-edit__photo">
+        <img class="profile-edit__image" src="user.png" alt="userPhoto">
+    </div>
+    <div class="profile-edit__data">
+        {{> input type='text' name='FirstName' placeholder='Ivan' value='Alexander'}}
+        {{> input type='text' name='SecondName' placeholder='Ivanov' value=''}}
+        {{> input type='text' name='Login' placeholder='IvanIvanov' value=''}}
+        {{> input type='email' name='Email' placeholder='ivanov@gmail.com' value=''}}
+        {{> input type='tel' name='Phone' placeholder='+71234567890' value=''}}
+        {{> input type='text' name='ChatName' placeholder='Иван' value=''}}
+    </div>
+    <div class="profile-edit__btn">
+        {{> button text='Save'}}
+    </div>
+</div>

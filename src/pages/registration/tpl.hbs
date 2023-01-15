@@ -1,0 +1,14 @@
+<div class="registration">
+    <h2>SIGN UP</h2>
+    <div class="registration__inputs">
+        {{> input type='text' name='FirstName' placeholder='Ivan'}}
+        {{> input type='text' name='SecondName' placeholder='Ivanov'}}
+        {{> input type='text' name='Login' placeholder='IvanIvanov'}}
+        {{> input type='email' name='Email' placeholder='ivanov@gmail.com'}}
+        {{> input type='tel' name='Phone' placeholder='+71234567890'}}
+        {{> input type='password' name='Password' placeholder=''}}
+        {{> input type='password' name='PasswordRepeat' placeholder=''}}
+    </div>
+    {{> button text='SIGN UP'}}
+    <a href="/auth" class="auth__link">Sign In</a>
+</div>
