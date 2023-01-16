@@ -1,3 +1,5 @@
+@import "../../style/settings";
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -22,7 +24,7 @@
     width: 50%;
 
     & input {
-      border-bottom-color: #EAEAEA;
+      border-bottom-color: $color-light-grey;
     }
   }
 
@@ -33,13 +35,13 @@
 
     &-item {
       font-size: 13px;
-      color: #3369F3;
+      color: $color-primary;
       text-decoration: none;
       margin: 20px 0;
     }
 
     & .red {
-      color: red;
+      color: $color-red;
     }
   }
 }

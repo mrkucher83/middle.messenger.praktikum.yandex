@@ -1,3 +1,5 @@
+@import "../../style/settings";
+
 .notFound {
   display: flex;
   flex-direction: column;
@@ -13,7 +15,7 @@
 
   &__link {
     font-size: 11px;
-    color: #3369F3;
+    color: $color-primary;
     text-decoration: none;
   }
 }

@@ -4,12 +4,12 @@
         <h3 class="profile__name">Иван</h3>
     </div>
     <div class="profile__data">
-        {{> input type='text' name='FirstName' placeholder='Ivan' value='Alexander' readonly=true}}
-        {{> input type='text' name='SecondName' placeholder='Ivanov' value='' readonly=true}}
-        {{> input type='text' name='Login' placeholder='IvanIvanov' value='' readonly=true}}
-        {{> input type='email' name='Email' placeholder='ivanov@gmail.com' value='' readonly=true}}
-        {{> input type='tel' name='Phone' placeholder='+71234567890' value='' readonly=true}}
-        {{> input type='text' name='ChatName' placeholder='Иван' value='' readonly=true}}
+        {{> input type='text' name='first_name' label='First name' value='Ivan' readonly=true}}
+        {{> input type='text' name='second_name' label='Second name' value='Ivanov' readonly=true}}
+        {{> input type='text' name='login' label='Login' value='IvanIvanov' readonly=true}}
+        {{> input type='email' name='email' label='Email' value='ivanov@gmail.com' readonly=true}}
+        {{> input type='tel' name='phone' label='Phone' value='+71234567890' readonly=true}}
+        {{> input type='text' name='display_name' label='Chat name' value='Иван' readonly=true}}
     </div>
     <div class="profile__links">
         <a class="profile__links-item" href="/profile_edit">Change the data</a>
