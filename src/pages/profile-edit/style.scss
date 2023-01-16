@@ -1,3 +1,5 @@
+@import "../../style/settings";
+
 .profile-edit {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,13 @@
     align-items: center;
   }
 
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__image {
     width: 130px;
     height: 130px;
@@ -20,9 +29,10 @@
 
   &__data {
     width: 50%;
+    margin-bottom: 200px;
 
     & input {
-      border-bottom-color: #EAEAEA;
+      border-bottom-color: $color-light-grey;
     }
   }
 
