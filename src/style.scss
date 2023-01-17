@@ -1,0 +1,34 @@
+.messenger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: Play, sans-serif;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  font-family: Play, sans-serif;
+  margin: 0 auto;
+  height: 40px;
+  width: 80%;
+
+  &__item {
+    font-size: 15px;
+    text-decoration: none;
+
+    &:hover {
+      text-shadow: #FC0 1px 0 10px;
+      color: dimgrey;
+    }
+  }
+}
+
+.form-block {
+  width: 100%;
+}

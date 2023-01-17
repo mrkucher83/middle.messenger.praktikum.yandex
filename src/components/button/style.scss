@@ -1,0 +1,12 @@
+@import "../../style/settings";
+
+.button {
+  background: $color-primary;
+  border: none;
+  border-radius: 8px;
+  color: $color-white;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  margin: 20px auto;
+}

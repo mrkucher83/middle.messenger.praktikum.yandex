@@ -1,0 +1,20 @@
+@import "../../style/settings";
+
+.input {
+  width: 100%;
+
+  &__label {
+    font-size: 9px;
+    color: $color-grey;
+  }
+}
+
+input{
+  border: none;
+  border-bottom: 2px solid $color-primary;
+  height: 40px;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  outline: 0;
+}

@@ -1,0 +1,28 @@
+<nav class="menu">
+    <a class="menu__item" href="/auth">Sign In</a>
+    <a class="menu__item" href="/registration">Sign Up</a>
+    <a class="menu__item" href="/chats">Messages</a>
+    <a class="menu__item" href="/profile">Profile</a>
+    <a class="menu__item" href="/profile_edit">Change the data</a>
+    <a class="menu__item" href="/profile_password">Change the password</a>
+    <a class="menu__item" href="/notFound">notFound</a>
+    <a class="menu__item" href="/serverError">serverError</a>
+</nav>
+
+{{#if isAuth}}
+    <div class="messenger">{{> auth }}</div>
+{{else if isReg}}
+    <div class="messenger">{{> registration }}</div>
+{{else if isChats}}
+    <div class="messenger">{{> chats }}</div>
+{{else if isErr}}
+    <div class="messenger">{{> serverError }}</div>
+{{else if isNotFound}}
+    <div class="messenger">{{> notFound }}</div>
+{{else if isProfile}}
+    <div class="messenger">{{> profile }}</div>
+{{else if isProfileEdit}}
+    <div class="messenger">{{> profileEdit }}</div>
+{{else if isProfilePass}}
+    <div class="messenger">{{> profilePassword }}</div>
+{{/if}}
