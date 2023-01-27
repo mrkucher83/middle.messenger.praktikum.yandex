@@ -13,5 +13,5 @@ app.get('/*', (req, res) => {
 });
 
 app.listen(PORT, HOSTNAME, () => {
-    console.log(`App listening on ${HOSTNAME}:${PORT}`)
+    console.log(`App listening on http://${HOSTNAME}:${PORT}`)
 });

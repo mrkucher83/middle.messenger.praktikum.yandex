@@ -1,0 +1,32 @@
+@import "../../style/settings";
+
+.message {
+  border-radius: 0 10px 10px 10px;
+  background-color: $color-light-grey;
+  padding: 10px;
+  font-size: 12px;
+  display: inline-block;
+  margin: 10px 0;
+  max-width: 50%;
+
+  &__image {
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &__time {
+    color: $color-grey;
+    margin: 0;
+    text-align: end;
+  }
+}
+
+.me {
+  align-self: end;
+  background-color: $color-light-blue;
+  border-radius: 10px 0 10px 10px;
+}

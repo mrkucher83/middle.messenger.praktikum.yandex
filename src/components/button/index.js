@@ -4,6 +4,6 @@ import './style.scss';
 
 Handlebars.registerPartial('button', tpl);
 
-export default (text) => {
-    return tpl({ text });
+export default (type, text) => {
+    return tpl({ type, text });
 }

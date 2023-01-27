@@ -1,13 +1,17 @@
+{{#if isChats}}
+  <div class="empty"></div>
+{{else}}
 <nav class="menu">
     <a class="menu__item" href="/auth">Sign In</a>
     <a class="menu__item" href="/registration">Sign Up</a>
-    <a class="menu__item" href="/chats">Messages</a>
+    <a class="menu__item" href="/chats">Chats</a>
     <a class="menu__item" href="/profile">Profile</a>
     <a class="menu__item" href="/profile_edit">Change the data</a>
     <a class="menu__item" href="/profile_password">Change the password</a>
     <a class="menu__item" href="/notFound">notFound</a>
     <a class="menu__item" href="/serverError">serverError</a>
 </nav>
+{{/if}}
 
 {{#if isAuth}}
     <div class="messenger">{{> auth }}</div>

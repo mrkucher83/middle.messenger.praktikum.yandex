@@ -1,0 +1,13 @@
+<div class="card">
+  <img class="card__image" src="user.png" alt="userPhoto">
+  <div class="card__content">
+    <div class="card__content-username">{{ userName }}</div>
+    <div class="card__content-message">{{ lastMessage }}</div>
+  </div>
+  <div class="card__meta">
+    <div class="card__meta-date">{{ date }}</div>
+    {{#if amount}}
+    <div class="card__meta-unread">{{ amount }}</div>
+    {{/if}}
+  </div>
+</div>
