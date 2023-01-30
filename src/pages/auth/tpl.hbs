@@ -2,10 +2,10 @@
   <h2>SIGN IN</h2>
   <form action="" class="form-block">
     <div class="auth__inputs">
-      {{> input type='text' name='login' label='Login' placeholder='IvanIvanov'}}
-      {{> input type='password' name='password' label='Password'}}
+        {{{ loginInput }}}
+        {{{ passwordInput }}}
     </div>
-    {{> button text='SIGN IN' type='submit'}}
+    {{{ button }}}
   </form>
   <a href="/registration" class="auth__link">Create account</a>
 </div>

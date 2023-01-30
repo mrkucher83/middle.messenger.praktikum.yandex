@@ -4,12 +4,12 @@
   </div>
   <form action="" class="profile-password__form form-block">
     <div class="profile-password__data">
-      {{> input type='password' name='oldPassword' label='Old password'}}
-      {{> input type='password' name='newPassword' label='New password'}}
-      {{> input type='password' name='newPassword' label='Repeat new password'}}
+      {{{ oldPasswordInput }}}
+      {{{ newPasswordInput }}}
+      {{{ newPasswordRepeatInput }}}
     </div>
     <div class="profile-password__btn">
-      {{> button text='Save' type='submit'}}
+      {{{ button }}}
     </div>
   </form>
 </div>

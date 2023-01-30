@@ -1,9 +1,7 @@
 import Handlebars from 'handlebars';
-import tpl from './tpl.hbs';
+import tpl from 'bundle-text:./tpl.hbs';
 import './style.scss';
 
-Handlebars.registerPartial('input', tpl);
-
-export default (type, name, placeholder, value, readonly) => {
-    return tpl({ type, name, placeholder, value, readonly });
+export default (type, name, label, placeholder, value, readonly) => {
+  return Handlebars.compile(tpl)({ type, name, label, placeholder, value, readonly });
 }

@@ -1,4 +1,4 @@
-{{#if isChats}}
+{{#if route.isChats}}
   <div class="empty"></div>
 {{else}}
 <nav class="menu">
@@ -13,20 +13,20 @@
 </nav>
 {{/if}}
 
-{{#if isAuth}}
-    <div class="messenger">{{> auth }}</div>
-{{else if isReg}}
-    <div class="messenger">{{> registration }}</div>
-{{else if isChats}}
+{{#if route.isAuth}}
+    <div class="messenger">{{{ auth }}}</div>
+{{else if route.isReg}}
+    <div class="messenger">{{{ registration }}}</div>
+{{else if route.isChats}}
     <div class="messenger">{{> chats }}</div>
-{{else if isErr}}
-    <div class="messenger">{{> serverError }}</div>
-{{else if isNotFound}}
-    <div class="messenger">{{> notFound }}</div>
-{{else if isProfile}}
-    <div class="messenger">{{> profile }}</div>
-{{else if isProfileEdit}}
-    <div class="messenger">{{> profileEdit }}</div>
-{{else if isProfilePass}}
-    <div class="messenger">{{> profilePassword }}</div>
+{{else if route.isErr}}
+    <div class="messenger">{{{ serverError }}}</div>
+{{else if route.isNotFound}}
+    <div class="messenger">{{{ notFound }}}</div>
+{{else if route.isProfile}}
+    <div class="messenger">{{{ profile }}}</div>
+{{else if route.isProfileEdit}}
+    <div class="messenger">{{{ profileEdit }}}</div>
+{{else if route.isProfilePass}}
+    <div class="messenger">{{{ profilePassword }}}</div>
 {{/if}}

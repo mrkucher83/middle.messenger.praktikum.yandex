@@ -1,9 +1,7 @@
 import Handlebars from 'handlebars';
-import tpl from './tpl.hbs';
+import tpl from 'bundle-text:./tpl.hbs';
 import './style.scss';
 
-Handlebars.registerPartial('button', tpl);
-
 export default (type, text) => {
-    return tpl({ type, text });
+  return Handlebars.compile(tpl)({ type, text });
 }
