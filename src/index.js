@@ -11,6 +11,11 @@ import profilePassword from './pages/profile-password';
 import chats from './pages/chats';
 import button from './components/button';
 import input from './components/input';
+import message from './components/message';
+import card from './components/card';
+import {
+  cards, messages, authInputs, registrationInputs, profileInputs, profileEditInputs ,profilePasswordInputs
+} from "./data";
 
 
 function getRoute() {
@@ -34,48 +39,46 @@ function getRoute() {
     }
 }
 
-// document.getElementById('root').innerHTML = tpl(getRoute());
-
 const comp = Handlebars.compile(tpl);
 
 const res = comp({
   auth: auth({
-    loginInput: input('text', 'login', 'Login', 'IvanIvanov'),
-    passwordInput: input('password', 'password', 'Password', ''),
+    input: input({
+      inputs: authInputs,
+    }),
     button: button('submit', 'SIGN IN'),
   }),
   registration: registration({
-    firstNameInput: input('text', 'first_name', 'First name', 'Ivan'),
-    secondNameInput: input('text', 'second_name', 'Second name', 'Ivanov'),
-    loginInput: input('text', 'login', 'Login', 'IvanIvanov'),
-    emailInput: input('email', 'email', 'Email', 'ivanov@gmail.com'),
-    phoneInput: input('tel', 'phone', 'Phone', '+71234567890'),
-    passwordInput: input('password', 'password', 'Password'),
-    passwordRepeatInput: input('password', 'password', 'Repeat password'),
+    input: input({
+      inputs: registrationInputs,
+    }),
     button: button('submit', 'SIGN UP'),
   }),
   profile: profile({
-    firstNameInput: input('text', 'first_name', 'First name', '', 'Ivan', true),
-    secondNameInput: input('text', 'second_name', 'Second name', '', 'Ivanov', true),
-    loginInput: input('text', 'login', 'Login', '', 'IvanIvanov', true),
-    emailInput: input('email', 'email', 'Email', '', 'ivanov@gmail.com', true),
-    phoneInput: input('tel', 'phone', 'Phone', '', '+71234567890', true),
-    displayNameInput: input('text', 'display_name', 'Chat name', '', 'Ivan', true),
+    input: input({
+      inputs: profileInputs,
+    }),
   }),
   profileEdit: profileEdit({
-    firstNameInput: input('text', 'first_name', 'First name', 'Ivan', 'Ivan'),
-    secondNameInput: input('text', 'second_name', 'Second name', 'Ivanov', 'Ivanov'),
-    loginInput: input('text', 'login', 'Login', 'IvanIvanov', 'IvanIvanov'),
-    emailInput: input('email', 'email', 'Email', 'ivanov@gmail.com', 'ivanov@gmail.com'),
-    phoneInput: input('tel', 'phone', 'Phone', '+71234567890', '+71234567890'),
-    displayNameInput: input('text', 'display_name', 'Chat name', 'Ivan', 'Ivan'),
+    input: input({
+      inputs: profileEditInputs,
+    }),
     button: button('submit', 'Save'),
   }),
   profilePassword: profilePassword({
-    oldPasswordInput: input('password', 'oldPassword', 'Old password'),
-    newPasswordInput: input('password', 'newPassword', 'New password'),
-    newPasswordRepeatInput: input('password', 'newPassword', 'Repeat new password'),
+    input: input({
+      inputs: profilePasswordInputs,
+    }),
     button: button('submit', 'Save'),
+  }),
+  chats: chats({
+    message: message({
+      messages,
+    }),
+    card: card({
+      cards,
+    }),
+    isEmpty: false,
   }),
   serverError: serverError(),
   notFound: notFound(),

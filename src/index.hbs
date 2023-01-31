@@ -18,7 +18,7 @@
 {{else if route.isReg}}
     <div class="messenger">{{{ registration }}}</div>
 {{else if route.isChats}}
-    <div class="messenger">{{> chats }}</div>
+    <div class="messenger">{{{ chats }}}</div>
 {{else if route.isErr}}
     <div class="messenger">{{{ serverError }}}</div>
 {{else if route.isNotFound}}

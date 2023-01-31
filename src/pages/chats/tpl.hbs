@@ -5,27 +5,14 @@
       <input class="chats__side-search" type="text" placeholder="Поиск">
     </div>
     <div class="chats__side-list">
-      {{> card userName='Alexander111' date='12:30' amount=4 }}
-      {{> card userName='Sergey' date='10:45' amount=0 lastMessage='The code below ensures that all elements...' }}
-      {{> card userName='Oleg' date='10:45' amount=0 lastMessage='The code below ensures that al' }}
-      {{> card userName='Nastya' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='Dmitriy' date='10:45' amount=18 lastMessage='Image' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='--Grisha__' date='10:45' amount=0 lastMessage='The code below ensures that al' }}
-      {{> card userName='Anton' date='10:45' amount=0 lastMessage='The code below ensures that al' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
-      {{> card userName='Sergey' date='10:45' amount=1 lastMessage='The code below ensures that al' }}
+      {{{ card }}}
     </div>
   </div>
 
   <div class="chats__separator"></div>
 
   <div class="chats__messages">
-  {{#if false}}
+  {{#if isEmpty}}
     <div class="chats__messages-empty">Выберите чат чтобы отправить сообщение</div>
   {{else}}
     <div class="chats__messages-chosen">
@@ -45,21 +32,7 @@
       <div class="chats__messages-body wall">
         <div class="wall__date">20.01.2023</div>
         <div class="wall__flow">
-          {{> message text='Hello world' time='10:59'}}
-          {{> message text='Привет, отправил' time='10:59' owner='me'}}
-          {{> message text='Check my new camera))' image='camera.jpg' time='10:59' owner='me'}}
-          {{> message text='Привет! Смотри, тут всплыл интересный кусок
-          лунной космической истории — НАСА в какой-то момент попросила
-          Хассельблад адаптировать модель SWC для полетов на Луну.
-          Сейчас мы все знаем что астронавты летали с моделью 500 EL —
-          и к слову говоря, все тушки этих камер все еще находятся на
-          поверхности Луны, так как астронавты с собой забрали только кассеты
-          с пленкой.
-
-          Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не
-          так и на ракету они так никогда и не попали. Всего их было произведено
-          25 штук, одну из них недавно продали на аукционе за 45000 евро.'
-            time='10:59'}}
+          {{{ message }}}
         </div>
       </div>
 
