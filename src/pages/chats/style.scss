@@ -146,6 +146,7 @@
     }
 
     .wall {
+      overflow: scroll;
       &__date {
         color: $color-grey;
         font-size: 14px;

@@ -1,88 +1,157 @@
-import Handlebars from "handlebars";
 import tpl from 'bundle-text:./index.hbs';
 import './style.scss';
-import auth from './pages/auth';
-import registration from './pages/registration';
-import serverError from './pages/500';
-import notFound from './pages/404';
-import profile from './pages/profile';
-import profileEdit from './pages/profile-edit';
-import profilePassword from './pages/profile-password';
-import chats from './pages/chats';
-import button from './components/button';
-import input from './components/input';
-import message from './components/message';
-import card from './components/card';
+import getRoute from "./utils/routing";
 import {
   cards, messages, authInputs, registrationInputs, profileInputs, profileEditInputs ,profilePasswordInputs
 } from "./data";
+import render from "./utils/renderDOM";
+import Block from "./services/Block";
+import NotFound from "./pages/404";
+import ServerError from "./pages/500";
+import Auth from "./pages/auth";
+import Button from "./components/button";
+import Input from "./components/input";
+import Registration from "./pages/registration";
+import Profile from "./pages/profile";
+import ProfileEdit from "./pages/profile-edit";
+import ProfilePassword from "./pages/profile-password";
+import Chats from "./pages/chats";
+import Card from "./components/card";
+import Message from "./components/message";
 
+const auth = new Auth('div', {
+  attr: {
+    class: 'auth',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input'
+    },
+    inputs: authInputs,
+  }),
+  button: new Button('div', {
+    type: 'submit',
+    text: 'SIGN IN',
+  }),
+});
 
-function getRoute() {
-    switch (window.location.pathname) {
-        case '/auth':
-            return {isAuth: true};
-        case '/registration':
-            return {isReg: true};
-        case '/chats':
-            return {isChats: true};
-        case '/serverError':
-            return {isErr: true};
-        case '/notFound':
-            return {isNotFound: true};
-        case '/profile':
-            return {isProfile: true};
-        case '/profile_edit':
-            return {isProfileEdit: true};
-        case '/profile_password':
-            return {isProfilePass: true};
-    }
+const registration = new Registration('div', {
+  attr: {
+    class: 'registration',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input'
+    },
+    inputs: registrationInputs,
+  }),
+  button: new Button('div', {
+    type: 'submit',
+    text: 'SIGN UP',
+  }),
+});
+
+const chats = new Chats('div', {
+  attr: {
+    class: 'chats',
+  },
+  card: new Card('div', {
+    attr: {
+      class: 'chats__side-list'
+    },
+    cards: cards,
+  }),
+  message: new Message('div', {
+    attr: {
+      class: 'wall__flow',
+    },
+    messages: messages,
+  }),
+  isEmpty: false,
+});
+
+const profile = new Profile('div', {
+  attr: {
+    class: 'profile',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input'
+    },
+    inputs: profileInputs,
+  }),
+});
+
+const profileEdit = new ProfileEdit('div', {
+  attr: {
+    class: 'profile-edit',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input'
+    },
+    inputs: profileEditInputs,
+  }),
+  button: new Button('div', {
+    type: 'submit',
+    text: 'Save',
+  }),
+});
+
+const profilePassword = new ProfilePassword('div', {
+  attr: {
+    class: 'profile-password',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input'
+    },
+    inputs: profilePasswordInputs,
+  }),
+  button: new Button('div', {
+    type: 'submit',
+    text: 'Save',
+  }),
+});
+
+const notFound = new NotFound('div', {
+  attr: {
+    class: 'notFound'
+  },
+});
+
+const serverError = new ServerError('div', {
+  attr: {
+    class: 'serverError'
+  },
+});
+
+class Messenger extends Block {
+  render() {
+    return this.compile(tpl, {
+      auth: this._props.auth,
+      registration: this._props.registration,
+      chats: this._props.chats,
+      profile: this._props.profile,
+      profileEdit: this._props.profileEdit,
+      profilePassword: this._props.profilePassword,
+      notFound: this._props.notFound,
+      serverError: this._props.serverError,
+      route: this._props.route,
+    });
+  }
 }
 
-const comp = Handlebars.compile(tpl);
+const messenger = new Messenger('div', {
+  auth,
+  registration,
+  chats,
+  profile,
+  profileEdit,
+  profilePassword,
+  notFound,
+  serverError,
+  route: getRoute(),
+});
 
-const res = comp({
-  auth: auth({
-    input: input({
-      inputs: authInputs,
-    }),
-    button: button('submit', 'SIGN IN'),
-  }),
-  registration: registration({
-    input: input({
-      inputs: registrationInputs,
-    }),
-    button: button('submit', 'SIGN UP'),
-  }),
-  profile: profile({
-    input: input({
-      inputs: profileInputs,
-    }),
-  }),
-  profileEdit: profileEdit({
-    input: input({
-      inputs: profileEditInputs,
-    }),
-    button: button('submit', 'Save'),
-  }),
-  profilePassword: profilePassword({
-    input: input({
-      inputs: profilePasswordInputs,
-    }),
-    button: button('submit', 'Save'),
-  }),
-  chats: chats({
-    message: message({
-      messages,
-    }),
-    card: card({
-      cards,
-    }),
-    isEmpty: false,
-  }),
-  serverError: serverError(),
-  notFound: notFound(),
-  route: getRoute()
-})
-
-document.getElementById('root').innerHTML = res;
+render('#root', messenger);

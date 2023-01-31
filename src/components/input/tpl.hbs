@@ -1,17 +1,15 @@
 {{#each inputs}}
-<div class="input">
-    <label for="{{ name }}" class="input__label">{{label}}</label>
-    <input
-        class="input__item"
-        type="{{ type }}"
-        id="{{ name }}"
-        name="{{ name }}"
-        placeholder="{{ placeholder }}"
-        minlength="4"
-        value="{{ value }}"
-        {{#if readonly}}
-        readonly
-        {{/if}}
-    >
-</div>
+<label for="{{ name }}" class="input__label">{{label}}</label>
+<input
+    class="input__item"
+    type="{{ type }}"
+    id="{{ name }}"
+    name="{{ name }}"
+    placeholder="{{ placeholder }}"
+    minlength="4"
+    value="{{ value }}"
+    {{#if readonly}}
+    readonly
+    {{/if}}
+>
 {{/each}}
