@@ -63,7 +63,7 @@ export const registrationInputs = [
   {type: 'email', name: 'email', label: 'Email', placeholder: 'ivanov@gmail.com'},
   {type: 'tel', name: 'phone', label: 'Phone', placeholder: '+71234567890'},
   {type: 'password', name: 'password', label: 'Password', placeholder: ''},
-  {type: 'password', name: 'password', label: 'Repeat password', placeholder: ''},
+  {type: 'password', name: 'password_repeat', label: 'Repeat password', placeholder: ''},
 ];
 
 export const profileInputs = [
@@ -87,5 +87,5 @@ export const profileEditInputs = [
 export const profilePasswordInputs = [
   {type: 'password', name: 'oldPassword', label: 'Old password', placeholder: ''},
   {type: 'password', name: 'newPassword', label: 'New password', placeholder: ''},
-  {type: 'password', name: 'newPassword', label: 'Repeat new password', placeholder: ''},
+  {type: 'password', name: 'newPasswordRepeat', label: 'Repeat new password', placeholder: ''},
 ];

@@ -164,7 +164,7 @@ export default class Block {
     return true;
   }
 
-  setProps = nextProps => {
+  setProps(nextProps) {
     if(!nextProps) {
       return;
     }
@@ -181,6 +181,7 @@ export default class Block {
   }
 
   _makePropsProxy(props) {
+    const self = this;
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
@@ -189,7 +190,7 @@ export default class Block {
       set(target, prop, value) {
         const oldValue = {...target};
         target[prop] = value;
-        this._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target);
+        self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target);
         return true;
       },
     });

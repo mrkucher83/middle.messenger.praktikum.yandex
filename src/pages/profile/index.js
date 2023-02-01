@@ -1,8 +1,10 @@
 import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
 import './style.scss';
+import Input from "../../components/input";
+import {profileInputs} from "../../data";
 
-export default class Profile extends Block {
+export class Profile extends Block {
   render() {
     return this.compile(tpl, {
       attr: this._props.attr,
@@ -10,3 +12,15 @@ export default class Profile extends Block {
     });
   }
 }
+
+export const profile = new Profile('div', {
+  attr: {
+    class: 'profile',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input'
+    },
+    inputs: profileInputs,
+  }),
+});

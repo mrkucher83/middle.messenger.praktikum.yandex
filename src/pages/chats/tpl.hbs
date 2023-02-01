@@ -1,7 +1,10 @@
 <div class="chats__side">
   <div class="chats__side-top">
     <a class="chats__side-link" href="/profile">Профиль  ></a>
-    <input class="chats__side-search" type="text" placeholder="Поиск">
+    <form id="searchUserForm" action="">
+      <input class="chats__side-search" name="user" type="text" placeholder="Поиск">
+      <input type="submit" class="chats__side-send" style="{display: none}">
+    </form>
   </div>
   {{{ card }}}
 </div>
@@ -21,10 +24,12 @@
       <img class="add-user" src="dots.png" alt="userPhoto">
     </div>
 
+    {{#if isAddOpen}}
     <div class="submenu add">
       <a class="submenu__item" href="#">Добавить пользователя</a>
       <a class="submenu__item" href="#">Удалить пользователя</a>
     </div>
+    {{/if}}
 
     <div class="chats__messages-body wall">
       <div class="wall__date">20.01.2023</div>
@@ -33,7 +38,7 @@
 
     <div class="chats__messages-footer bottom">
       <img class="bottom__upload" src="clip.png" alt="paper-clip">
-      <form class="bottom__form" action="">
+      <form id="sendMessage" class="bottom__form" action="">
         <input class="bottom__form-input" type="text" name="message" placeholder="Сообщение">
         <button class="bottom__form-btn" type="submit">
           <img class="bottom__form-send" src="send-message.png" alt="right-arrow">
@@ -41,11 +46,13 @@
       </form>
     </div>
 
+    {{#if isAttachOpen}}
     <div class="submenu attach">
       <a class="submenu__item" href="#">Фото или Видео</a>
       <a class="submenu__item" href="#">Файл</a>
       <a class="submenu__item" href="#">Локация</a>
     </div>
+    {{/if}}
   </div>
 {{/if}}
 </div>
