@@ -4,6 +4,7 @@ import './style.scss';
 import Input from "../../components/input";
 import {authInputs} from "../../data";
 import Button from "../../components/button";
+import validateInput from "../../utils/validator";
 
 export class Auth extends Block {
   render() {
@@ -16,6 +17,8 @@ export class Auth extends Block {
 
   _addEvents() {
     this._element.querySelector('button').addEventListener('click', this._props.events.click);
+    this._element.querySelectorAll('input')
+      .forEach(input => input.addEventListener('blur', this._props.events.blur, true));
 
     super._addEvents();
   }
@@ -49,6 +52,7 @@ export const auth = new Auth('div', {
           password: formData.get('password'),
         });
       }
-    }
-  }
+    },
+    'blur': event => validateInput(event),
+  },
 });

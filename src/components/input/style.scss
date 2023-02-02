@@ -13,8 +13,14 @@
     border-bottom: 2px solid $color-primary;
     height: 40px;
     width: 100%;
-    margin-bottom: 20px;
     font-size: 18px;
     outline: 0;
+  }
+
+  &__validation {
+    font-size: 8px;
+    color: $color-red;
+    height: 10px;
+    margin-bottom: 12px;
   }
 }

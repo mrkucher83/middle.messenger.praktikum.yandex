@@ -4,6 +4,7 @@ import './style.scss';
 import Input from "../../components/input";
 import {registrationInputs} from "../../data";
 import Button from "../../components/button";
+import validateInput from "../../utils/validator";
 
 export class Registration extends Block {
   render() {
@@ -12,6 +13,14 @@ export class Registration extends Block {
       input: this._props.input,
       button: this._props.button,
     });
+  }
+
+  _addEvents() {
+    this._element.querySelector('button').addEventListener('click', this._props.events.click);
+    this._element.querySelectorAll('input')
+      .forEach(input => input.addEventListener('blur', this._props.events.blur, true));
+
+    super._addEvents();
   }
 }
 
@@ -48,6 +57,7 @@ export const registration = new Registration('div', {
           passwordRepeat: formData.get('password_repeat'),
         });
       }
-    }
+    },
+    'blur': event => validateInput(event),
   },
 });

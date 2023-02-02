@@ -4,6 +4,7 @@ import './style.scss';
 import Input from "../../components/input";
 import {profilePasswordInputs} from "../../data";
 import Button from "../../components/button";
+import validateInput from "../../utils/validator";
 
 export  class ProfilePassword extends Block {
   render() {
@@ -12,6 +13,14 @@ export  class ProfilePassword extends Block {
       input: this._props.input,
       button: this._props.button,
     });
+  }
+
+  _addEvents() {
+    this._element.querySelector('button').addEventListener('click', this._props.events.click);
+    this._element.querySelectorAll('input')
+      .forEach(input => input.addEventListener('blur', this._props.events.blur, true));
+
+    super._addEvents();
   }
 }
 
@@ -44,6 +53,7 @@ export const profilePassword = new ProfilePassword('div', {
           newPasswordRepeat: formData.get('newPasswordRepeat'),
         });
       }
-    }
+    },
+    'blur': event => validateInput(event),
   },
 });

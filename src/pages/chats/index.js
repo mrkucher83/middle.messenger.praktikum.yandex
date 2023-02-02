@@ -4,6 +4,7 @@ import './style.scss';
 import Card from "../../components/card";
 import {cards, messages} from "../../data";
 import Message from "../../components/message";
+import validateInput from "../../utils/validator";
 
 export class Chats extends Block {
   render() {
@@ -19,6 +20,8 @@ export class Chats extends Block {
 
   _addEvents() {
     this._element.querySelector('button').addEventListener('click', this._props.events.click);
+    this._element.querySelectorAll('input')
+      .forEach(input => input.addEventListener('blur', this._props.events.blur, true));
 
     super._addEvents();
   }
@@ -104,5 +107,6 @@ export const chats = new Chats('div', {
         });
       }
     },
+    'blur': event => validateInput(event),
   },
 });
