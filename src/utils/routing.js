@@ -1,20 +1,22 @@
 export default function getRoute() {
   switch (window.location.pathname) {
     case '/auth':
-      return {isAuth: true};
+      return { isAuth: true };
     case '/registration':
-      return {isReg: true};
+      return { isReg: true };
     case '/chats':
-      return {isChats: true};
+      return { isChats: true };
     case '/serverError':
-      return {isErr: true};
+      return { isErr: true };
     case '/notFound':
-      return {isNotFound: true};
+      return { isNotFound: true };
     case '/profile':
-      return {isProfile: true};
+      return { isProfile: true };
     case '/profile_edit':
-      return {isProfileEdit: true};
+      return { isProfileEdit: true };
     case '/profile_password':
-      return {isProfilePass: true};
+      return { isProfilePass: true };
+    default:
+      return { isAuth: true };
   }
 }

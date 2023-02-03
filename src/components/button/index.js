@@ -1,5 +1,5 @@
-import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
 
 export default class Button extends Block {

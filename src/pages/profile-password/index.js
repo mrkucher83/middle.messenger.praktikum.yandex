@@ -1,12 +1,12 @@
-import Block from "../../services/Block";
+import Block from '../../services/Block';
 import tpl from 'bundle-text:./tpl.hbs';
 import './style.scss';
-import Input from "../../components/input";
-import {profilePasswordInputs} from "../../data";
-import Button from "../../components/button";
-import validateInput from "../../utils/validator";
+import Input from '../../components/input';
+import { profilePasswordInputs } from '../../data';
+import Button from '../../components/button';
+import validateInput from '../../utils/validator';
 
-export  class ProfilePassword extends Block {
+export class ProfilePassword extends Block {
   render() {
     return this.compile(tpl, {
       attr: this._props.attr,
@@ -30,7 +30,7 @@ export const profilePassword = new ProfilePassword('div', {
   },
   input: new Input('div', {
     attr: {
-      class: 'input'
+      class: 'input',
     },
     inputs: profilePasswordInputs,
   }),
@@ -40,7 +40,7 @@ export const profilePassword = new ProfilePassword('div', {
   }),
   events: {
     'click': event => {
-      if(event && event.target.tagName === "BUTTON") {
+      if (event && event.target.tagName === 'BUTTON') {
         event.preventDefault();
         event.stopPropagation();
 

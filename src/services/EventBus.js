@@ -4,7 +4,7 @@ export default class EventBus {
   }
 
   on(event, callback) {
-    if(!this._events[event]) {
+    if (!this._events[event]) {
       this._events[event] = [];
     }
 
@@ -12,7 +12,7 @@ export default class EventBus {
   }
 
   off(event, callback) {
-    if(!this._events[event]) {
+    if (!this._events[event]) {
       throw new Error(`There is no event: ${event}`);
     }
 
@@ -22,7 +22,7 @@ export default class EventBus {
   }
 
   emit(event, ...args) {
-    if(!this._events[event]) {
+    if (!this._events[event]) {
       throw new Error(`There is no event: ${event}`);
     }
 

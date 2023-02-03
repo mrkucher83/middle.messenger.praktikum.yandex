@@ -1,4 +1,4 @@
-import Block from "../../services/Block";
+import Block from '../../services/Block';
 import tpl from 'bundle-text:./tpl.hbs';
 import './style.scss';
 

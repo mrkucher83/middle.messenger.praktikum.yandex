@@ -1,5 +1,5 @@
-import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
 
 export class NotFound extends Block {
@@ -12,6 +12,6 @@ export class NotFound extends Block {
 
 export const notFound = new NotFound('div', {
   attr: {
-    class: 'notFound'
+    class: 'not-found',
   },
 });

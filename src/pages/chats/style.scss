@@ -32,7 +32,7 @@
       width: 100%;
     }
 
-    #searchUserForm {
+    #search-user-form {
       height: 45%;
       width: 100%;
       margin-bottom: 0;
@@ -123,7 +123,7 @@
       flex-direction: column;
       background-color: $color-white;
       border-radius: 10px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+      box-shadow: 0 0 6px rgba(0 0 0 / 14%);
       padding: 10px;
 
       &__item {
@@ -157,6 +157,7 @@
 
     .wall {
       overflow: scroll;
+
       &__date {
         color: $color-grey;
         font-size: 14px;
@@ -174,7 +175,6 @@
     &-footer {
       display: flex;
       align-items: center;
-      //justify-content: space-between;
       height: 6%;
     }
 

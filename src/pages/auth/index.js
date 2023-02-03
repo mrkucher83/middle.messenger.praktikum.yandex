@@ -1,10 +1,10 @@
-import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
-import Input from "../../components/input";
-import {authInputs} from "../../data";
-import Button from "../../components/button";
-import validateInput from "../../utils/validator";
+import Input from '../../components/input';
+import { authInputs } from '../../data';
+import Button from '../../components/button';
+import validateInput from '../../utils/validator';
 
 export class Auth extends Block {
   render() {
@@ -30,7 +30,7 @@ export const auth = new Auth('div', {
   },
   input: new Input('div', {
     attr: {
-      class: 'input'
+      class: 'input',
     },
     inputs: authInputs,
   }),
@@ -40,7 +40,7 @@ export const auth = new Auth('div', {
   }),
   events: {
     'click': event => {
-      if(event && event.target.tagName === "BUTTON") {
+      if (event && event.target.tagName === 'BUTTON') {
         event.preventDefault();
         event.stopPropagation();
 

@@ -1,8 +1,8 @@
-import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
-import Input from "../../components/input";
-import {profileInputs} from "../../data";
+import Input from '../../components/input';
+import { profileInputs } from '../../data';
 
 export class Profile extends Block {
   render() {
@@ -19,7 +19,7 @@ export const profile = new Profile('div', {
   },
   input: new Input('div', {
     attr: {
-      class: 'input'
+      class: 'input',
     },
     inputs: profileInputs,
   }),

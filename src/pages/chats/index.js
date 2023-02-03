@@ -1,10 +1,10 @@
-import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
-import Card from "../../components/card";
-import {cards, messages} from "../../data";
-import Message from "../../components/message";
-import validateInput from "../../utils/validator";
+import Card from '../../components/card';
+import { cards, messages } from '../../data';
+import Message from '../../components/message';
+import validateInput from '../../utils/validator';
 
 export class Chats extends Block {
   render() {
@@ -33,75 +33,74 @@ export const chats = new Chats('div', {
   },
   card: new Card('div', {
     attr: {
-      class: 'chats__side-list'
+      class: 'chats__side-list',
     },
-    cards: cards,
+    cards,
   }),
   message: new Message('div', {
     attr: {
       class: 'wall__flow',
     },
-    messages: messages,
+    messages,
   }),
   isEmpty: false,
   isAddOpen: false,
   isAttachOpen: false,
   events: {
     'click': function (event) {
-      if(event  &&
-        event.target.className === "bottom__form-send" ||
-        event.target.tagName === "BUTTON")
-      {
+      if (event
+        && event.target.className === 'bottom__form-send'
+        || event.target.tagName === 'BUTTON') {
         event.preventDefault();
         event.stopPropagation();
 
         const formElement = document.getElementById('sendMessage');
         const formData = new FormData(formElement);
 
-        document.querySelector(".bottom__form-input").value = "";
+        document.querySelector('.bottom__form-input').value = '';
         const time = new Date();
 
         messages.push({
           owner: 'me',
           text: formData.get('message'),
-          time: `${time.getHours()}:${time.getMinutes()}`
+          time: `${time.getHours()}:${time.getMinutes()}`,
         });
 
         // добавление отправленного сообщения в массив сообщений
         chats._children.message.setProps({
-          messages: messages,
+          messages,
         });
 
-        //прокрутка вниз до последнего сообщения
-        const wall = document.querySelectorAll(".message");
-        wall[wall.length-1].scrollIntoView({block: "end", behavior: "smooth"})
+        // прокрутка вниз до последнего сообщения
+        const wall = document.querySelectorAll('.message');
+        wall[wall.length - 1].scrollIntoView({ block: 'end', behavior: 'smooth' });
 
         console.log({
           message: formData.get('message'),
         });
       }
 
-      if(event && event.target.className === "chats__side-send") {
+      if (event && event.target.className === 'chats__side-send') {
         event.preventDefault();
         event.stopPropagation();
 
-        const formElement = document.getElementById('searchUserForm');
+        const formElement = document.getElementById('search-user-form');
         const formData = new FormData(formElement);
 
-        document.querySelector(".chats__side-search").value = "";
+        document.querySelector('.chats__side-search').value = '';
 
         console.log({
           user: formData.get('user'),
         });
       }
 
-      if(event && event.target.className === "add-user") {
+      if (event && event.target.className === 'add-user') {
         chats.setProps({
           isAddOpen: !chats._props.isAddOpen,
         });
       }
 
-      if(event && event.target.className === "bottom__upload") {
+      if (event && event.target.className === 'bottom__upload') {
         chats.setProps({
           isAttachOpen: !chats._props.isAttachOpen,
         });

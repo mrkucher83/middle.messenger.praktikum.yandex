@@ -1,6 +1,6 @@
-import {v4 as makeUUID} from 'uuid';
-import * as Handlebars from "handlebars";
-import  EventBus  from "./eventBus";
+import { v4 as makeUUID } from 'uuid';
+import * as Handlebars from 'handlebars';
+import  EventBus  from './eventBus';
 
 export default class Block {
   static EVENTS = {
@@ -24,7 +24,7 @@ export default class Block {
    *
    *  @return {void}
    */
-  constructor(tagName = "div", propsAndChildren = {}) {
+  constructor(tagName = 'div', propsAndChildren = {}) {
     const { children, props } = this._getChildren(propsAndChildren);
     this._children = this._makePropsProxy(children);
 
@@ -120,7 +120,7 @@ export default class Block {
     const propsAndStubs = {...props};
 
     Object.entries(this._children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child._id}"></div>`
+      propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
     const fragment = this._createDocumentElement('template');
@@ -201,10 +201,10 @@ export default class Block {
   }
 
   show() {
-    this.getContent().style.display = "block";
+    this.getContent().style.display = 'block';
   }
 
   hide() {
-    this.getContent().style.display = "none";
+    this.getContent().style.display = 'none';
   }
 }

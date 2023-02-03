@@ -1,19 +1,19 @@
 import tpl from 'bundle-text:./index.hbs';
 import './style.scss';
 
-import getRoute from "./utils/routing";
-import render from "./utils/renderDOM";
+import getRoute from './utils/routing';
+import render from './utils/renderDOM';
 
-import Block from "./services/Block";
+import Block from './services/Block';
 
-import { notFound } from "./pages/404";
-import { serverError } from "./pages/500";
-import { auth } from "./pages/auth";
-import { registration } from "./pages/registration";
-import { profile } from "./pages/profile";
-import { profileEdit } from "./pages/profile-edit";
-import { profilePassword } from "./pages/profile-password";
-import { chats } from "./pages/chats";
+import { notFound } from './pages/404';
+import { serverError } from './pages/500';
+import { auth } from './pages/auth';
+import { registration } from './pages/registration';
+import { profile } from './pages/profile';
+import { profileEdit } from './pages/profile-edit';
+import { profilePassword } from './pages/profile-password';
+import { chats } from './pages/chats';
 
 class Messenger extends Block {
   render() {

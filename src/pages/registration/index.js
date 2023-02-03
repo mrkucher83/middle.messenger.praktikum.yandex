@@ -1,10 +1,10 @@
-import Block from "../../services/Block";
 import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
-import Input from "../../components/input";
-import {registrationInputs} from "../../data";
-import Button from "../../components/button";
-import validateInput from "../../utils/validator";
+import Input from '../../components/input';
+import { registrationInputs } from '../../data';
+import Button from '../../components/button';
+import validateInput from '../../utils/validator';
 
 export class Registration extends Block {
   render() {
@@ -30,7 +30,7 @@ export const registration = new Registration('div', {
   },
   input: new Input('div', {
     attr: {
-      class: 'input'
+      class: 'input',
     },
     inputs: registrationInputs,
   }),
@@ -40,7 +40,7 @@ export const registration = new Registration('div', {
   }),
   events: {
     'click': event => {
-      if(event && event.target.tagName === "BUTTON") {
+      if (event && event.target.tagName === 'BUTTON') {
         event.preventDefault();
         event.stopPropagation();
 
