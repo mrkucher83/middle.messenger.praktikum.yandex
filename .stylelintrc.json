@@ -5,6 +5,7 @@
   },
   "ignoreFiles": [
     "build/*",
+    "dist/*",
     "node_modules/*",
     ".parcel-cash/*"
   ]
