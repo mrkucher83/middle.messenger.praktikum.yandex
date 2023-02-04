@@ -2,6 +2,16 @@ import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars';
 import  EventBus  from './eventBus';
 
+type Meta = {
+  tagName: string;
+  props?: Record<string, any>
+}
+
+interface Events {
+  click?: (e: Event) => never;
+  blur?: (e: Event) => never;
+}
+
 export default class Block {
   static EVENTS = {
     INIT: 'init',
@@ -10,12 +20,12 @@ export default class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  _props;
-  _children;
-  _element = null;
-  _meta = null;
-  _id = null;
-  _eventBus;
+  _props: Record<string, any>;
+  _children: Block;
+  _element: HTMLElement | null = null;
+  _meta: Meta | null = null;
+  _id: string | null = null;
+  _eventBus: EventBus;
   _setUpdate;
 
   /** JSDoc
@@ -24,7 +34,7 @@ export default class Block {
    *
    *  @return {void}
    */
-  constructor(tagName = 'div', propsAndChildren = {}) {
+  constructor(tagName: string = 'div', propsAndChildren = {}) {
     const { children, props } = this._getChildren(propsAndChildren);
     this._children = this._makePropsProxy(children);
 
@@ -51,23 +61,26 @@ export default class Block {
   }
 
   init() {
-    this._element = this._createDocumentElement(this._meta?.tagName);
+    this._element = this._meta ? this._createDocumentElement(this._meta?.tagName) : null;
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string): HTMLElement {
     const element = document.createElement(tagName);
-    if(this._props.settings?.withInternalID)
+    if(this._props.settings?.withInternalID && typeof this._id === 'string')
       element.setAttribute('data-id', this._id);
     return element;
   }
 
   _render() {
-    const block = this.render();
+    // @ts-ignore
+    const block: DocumentFragment = this.render();
 
     this._removeEvents();
-    this._element.innerHTML = '';
-    this._element.appendChild(block);
+    if (this._element) {
+      this._element.innerHTML = '';
+      this._element.appendChild(block);
+    }
     this._addEvents();
     this._addAttribute();
   }
@@ -75,10 +88,14 @@ export default class Block {
   render() {}
 
   _addEvents() {
-    const {events = {}} = this._props;
+    // @ts-ignore
+    const {events = {}}: Events = this._props;
+    console.log('11111', events);
 
     Object.keys(events).forEach(eventName => {
-      this._element.addEventListener(eventName, events[eventName]);
+      if (this._element) {
+        this._element.addEventListener(eventName, events[eventName]);
+      }
     });
   }
 
@@ -86,15 +103,20 @@ export default class Block {
     const {events = {}} = this._props;
 
     Object.keys(events).forEach(eventName => {
-      this._element.removeEventListener(eventName, events[eventName]);
+      if (this._element) {
+        this._element.removeEventListener(eventName, events[eventName]);
+      }
     });
   }
 
   _addAttribute() {
-    const {attr = {}} = this._props;
+    // @ts-ignore
+    const {attr = {}}: Record<string, string> = this._props;
 
     Object.entries(attr).forEach(([key, value]) => {
-      this._element.setAttribute(key, value);
+      if (this._element) {
+        this._element.setAttribute(key, value);
+      }
     });
   }
 
@@ -113,7 +135,7 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template, props) {
+  compile(template, props): DocumentFragment {
     if(typeof props === 'undefined') {
       props = this._props;
     }
@@ -123,7 +145,7 @@ export default class Block {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
 
-    const fragment = this._createDocumentElement('template');
+    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
     Object.values(this._children).forEach(child => {
@@ -196,15 +218,17 @@ export default class Block {
     });
   }
 
-  getContent() {
+  getContent(): HTMLElement | null  {
     return this._element;
   }
 
   show() {
+    // @ts-ignore
     this.getContent().style.display = 'block';
   }
 
   hide() {
+    // @ts-ignore
     this.getContent().style.display = 'none';
   }
 }
