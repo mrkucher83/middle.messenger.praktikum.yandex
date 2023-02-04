@@ -1,9 +1,18 @@
+type Callback = (event: Event) => never
+
+type Events = {
+  [key: string]: Array<Callback>;
+}
+
+
 export default class EventBus {
+  _events: Events;
+
   constructor() {
     this._events = {};
   }
 
-  on(event, callback) {
+  on(event: string, callback: Callback) {
     if (!this._events[event]) {
       this._events[event] = [];
     }
@@ -11,7 +20,7 @@ export default class EventBus {
     this._events[event].push(callback);
   }
 
-  off(event, callback) {
+  off(event: string, callback: Callback) {
     if (!this._events[event]) {
       throw new Error(`There is no event: ${event}`);
     }
@@ -21,11 +30,12 @@ export default class EventBus {
     );
   }
 
-  emit(event, ...args) {
+  emit(event: string, ...args: unknown[]) {
     if (!this._events[event]) {
       throw new Error(`There is no event: ${event}`);
     }
 
+    // @ts-ignore
     this._events[event].forEach(cb => cb(...args));
   }
 }

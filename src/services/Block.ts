@@ -1,6 +1,6 @@
 import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars';
-import  EventBus  from './eventBus';
+import  EventBus  from './EventBus';
 
 type Meta = {
   tagName: string;
@@ -12,6 +12,11 @@ interface Events {
   blur?: (e: Event) => never;
 }
 
+type PropsAndChildren = {
+  props?: Record<string, any>;
+  children?: Record<string, Block>;
+}
+
 export default class Block {
   static EVENTS = {
     INIT: 'init',
@@ -21,12 +26,11 @@ export default class Block {
   };
 
   _props: Record<string, any>;
-  _children: Block;
+  _children: ProxyHandler<Block>;
   _element: HTMLElement | null = null;
   _meta: Meta | null = null;
   _id: string | null = null;
   _eventBus: EventBus;
-  _setUpdate;
 
   /** JSDoc
    *  @param {string} tagName
@@ -34,7 +38,7 @@ export default class Block {
    *
    *  @return {void}
    */
-  constructor(tagName: string = 'div', propsAndChildren = {}) {
+  constructor(tagName: string = 'div', propsAndChildren: PropsAndChildren = {}) {
     const { children, props } = this._getChildren(propsAndChildren);
     this._children = this._makePropsProxy(children);
 
@@ -90,7 +94,6 @@ export default class Block {
   _addEvents() {
     // @ts-ignore
     const {events = {}}: Events = this._props;
-    console.log('11111', events);
 
     Object.keys(events).forEach(eventName => {
       if (this._element) {
@@ -120,9 +123,9 @@ export default class Block {
     });
   }
 
-  _getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  _getChildren(propsAndChildren: PropsAndChildren) {
+    const children: Record<string, Block> = {};
+    const props: Record<string, unknown> = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -135,7 +138,7 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template, props): DocumentFragment {
+  compile(template: string, props: Record<string, unknown>): DocumentFragment {
     if(typeof props === 'undefined') {
       props = this._props;
     }
@@ -175,43 +178,44 @@ export default class Block {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if(response) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
+    console.log(oldProps, newProps)
     return true;
   }
 
-  setProps(nextProps) {
+  setProps(nextProps: Record<string, any>) {
     if(!nextProps) {
       return;
     }
 
     const { children, props } = this._getChildren(nextProps);
 
-    if(Object.values(children).length) {
+    if (Object.values(children).length) {
       Object.assign(this._children, children);
     }
 
-    if(Object.values(props).length) {
+    if (Object.values(props).length) {
       Object.assign(this._props, props);
     }
   }
 
-  _makePropsProxy(props) {
+  _makePropsProxy(props: Record<string, any>): ProxyHandler<Block> {
     const self = this;
     return new Proxy(props, {
       get(target, prop) {
-        const value = target[prop];
+        const value = target[prop as string];
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target, prop, value) {
         const oldValue = {...target};
-        target[prop] = value;
+        target[prop as string] = value;
         self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, target);
         return true;
       },

@@ -14,6 +14,7 @@
     "@babel/eslint-parser": "7.19.1",
     "@parcel/transformer-inline-string": "2.8.2",
     "@parcel/transformer-sass": "2.8.2",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "5.50.0",
     "@typescript-eslint/parser": "5.50.0",
     "eslint": "8.33.0",
