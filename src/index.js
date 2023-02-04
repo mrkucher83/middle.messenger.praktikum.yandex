@@ -1,35 +1,46 @@
-// import Handlebars from "handlebars";
-import tpl from './index.hbs';
+import tpl from 'bundle-text:./index.hbs';
 import './style.scss';
-import auth from './pages/auth';
-import registration from './pages/registration';
-import serverError from './pages/500';
-import notFound from './pages/404';
-import profile from './pages/profile';
-import profileEdit from './pages/profile-edit';
-import profilePassword from './pages/profile-password';
-import chats from './pages/chats';
 
+import getRoute from './utils/routing';
+import render from './utils/renderDOM';
 
-function getRoute() {
-    switch (window.location.pathname) {
-        case '/auth':
-            return {isAuth: true};
-        case '/registration':
-            return {isReg: true};
-        case '/chats':
-            return {isChats: true};
-        case '/serverError':
-            return {isErr: true};
-        case '/notFound':
-            return {isNotFound: true};
-        case '/profile':
-            return {isProfile: true};
-        case '/profile_edit':
-            return {isProfileEdit: true};
-        case '/profile_password':
-            return {isProfilePass: true};
-    }
+import Block from './services/Block';
+
+import { notFound } from './pages/404';
+import { serverError } from './pages/500';
+import { auth } from './pages/auth';
+import { registration } from './pages/registration';
+import { profile } from './pages/profile';
+import { profileEdit } from './pages/profile-edit';
+import { profilePassword } from './pages/profile-password';
+import { chats } from './pages/chats';
+
+class Messenger extends Block {
+  render() {
+    return this.compile(tpl, {
+      auth: this._props.auth,
+      registration: this._props.registration,
+      chats: this._props.chats,
+      profile: this._props.profile,
+      profileEdit: this._props.profileEdit,
+      profilePassword: this._props.profilePassword,
+      notFound: this._props.notFound,
+      serverError: this._props.serverError,
+      route: this._props.route,
+    });
+  }
 }
 
-document.getElementById('root').innerHTML = tpl(getRoute());
+const messenger = new Messenger('div', {
+  auth,
+  registration,
+  chats,
+  profile,
+  profileEdit,
+  profilePassword,
+  notFound,
+  serverError,
+  route: getRoute(),
+});
+
+render('#root', messenger);

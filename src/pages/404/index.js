@@ -1,9 +1,17 @@
-import Handlebars from "handlebars";
-import tpl from './tpl.hbs';
+import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
 
-Handlebars.registerPartial('notFound', tpl);
-
-export default (props = {}) => {
-    return tpl(props);
+export class NotFound extends Block {
+  render() {
+    return this.compile(tpl, {
+      attr: this._props.attr,
+    });
+  }
 }
+
+export const notFound = new NotFound('div', {
+  attr: {
+    class: 'not-found',
+  },
+});
