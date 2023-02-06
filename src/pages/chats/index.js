@@ -4,7 +4,6 @@ import './style.scss';
 import Card from '../../components/card';
 import { cards, messages } from '../../data';
 import Message from '../../components/message';
-import validateInput from '../../utils/validator';
 
 export class Chats extends Block {
   render() {
@@ -57,19 +56,23 @@ export const chats = new Chats('div', {
         const formElement = document.getElementById('sendMessage');
         const formData = new FormData(formElement);
 
-        document.querySelector('.bottom__form-input').value = '';
-        const time = new Date();
-
-        messages.push({
-          owner: 'me',
-          text: formData.get('message'),
-          time: `${time.getHours()}:${time.getMinutes()}`,
-        });
-
         // добавление отправленного сообщения в массив сообщений
-        chats._children.message.setProps({
-          messages,
-        });
+        if (!formData.get('message')) {
+          alert('Поле сообщения не должно быть пустым');
+        } else {
+          document.querySelector('.bottom__form-input').value = '';
+          const time = new Date();
+
+          messages.push({
+            owner: 'me',
+            text: formData.get('message'),
+            time: `${time.getHours()}:${time.getMinutes()}`,
+          });
+
+          chats._children.message.setProps({
+            messages,
+          });
+        }
 
         // прокрутка вниз до последнего сообщения
         const wall = document.querySelectorAll('.message');
@@ -106,6 +109,5 @@ export const chats = new Chats('div', {
         });
       }
     },
-    'blur': event => validateInput(event),
   },
 });
