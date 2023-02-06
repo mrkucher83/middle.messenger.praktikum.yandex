@@ -2,11 +2,11 @@ import tpl from 'bundle-text:./tpl.hbs';
 import Block from '../../services/Block';
 import './style.scss';
 
-export default class Input extends Block {
+export default class Card extends Block {
   render() {
     return this.compile(tpl, {
       attr: this._props.attr,
-      inputs: this._props.inputs,
+      cards: this._props.cards,
     });
   }
 }

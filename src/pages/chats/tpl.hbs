@@ -1,1 +1,58 @@
-<div class="chats">Страница в разработке</div>
+<div class="chats__side">
+  <div class="chats__side-top">
+    <a class="chats__side-link" href="/profile">Профиль  ></a>
+    <form id="search-user-form" action="">
+      <input class="chats__side-search" name="user" type="text" placeholder="Поиск">
+      <input type="submit" class="chats__side-send" style="{display: none}">
+    </form>
+  </div>
+  {{{ card }}}
+</div>
+
+<div class="chats__separator"></div>
+
+<div class="chats__messages">
+{{#if isEmpty}}
+  <div class="chats__messages-empty">Выберите чат чтобы отправить сообщение</div>
+{{else}}
+  <div class="chats__messages-chosen">
+    <div class="chats__messages-header">
+      <div class="user">
+        <img class="user__image" src="user.png" alt="button-add">
+        <h4 class="user__name">Sergey</h4>
+      </div>
+      <img class="add-user" src="dots.png" alt="userPhoto">
+    </div>
+
+    {{#if isAddOpen}}
+    <div class="submenu add">
+      <a class="submenu__item" href="#">Добавить пользователя</a>
+      <a class="submenu__item" href="#">Удалить пользователя</a>
+    </div>
+    {{/if}}
+
+    <div class="chats__messages-body wall">
+      <div class="wall__date">20.01.2023</div>
+      {{{ message }}}
+    </div>
+
+    <div class="chats__messages-footer bottom">
+      <img class="bottom__upload" src="clip.png" alt="paper-clip">
+      <form id="sendMessage" class="bottom__form" action="">
+        <input class="bottom__form-input" type="text" name="message" placeholder="Сообщение">
+        <button class="bottom__form-btn" type="submit">
+          <img class="bottom__form-send" src="send-message.png" alt="right-arrow">
+        </button>
+      </form>
+    </div>
+
+    {{#if isAttachOpen}}
+    <div class="submenu attach">
+      <a class="submenu__item" href="#">Фото или Видео</a>
+      <a class="submenu__item" href="#">Файл</a>
+      <a class="submenu__item" href="#">Локация</a>
+    </div>
+    {{/if}}
+  </div>
+{{/if}}
+</div>

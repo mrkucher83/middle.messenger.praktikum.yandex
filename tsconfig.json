@@ -1,0 +1,18 @@
+{
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build"
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es2017",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "declaration": false,
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "sourceMap": true
+  }
+}

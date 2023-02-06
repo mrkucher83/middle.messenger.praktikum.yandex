@@ -1,18 +1,11 @@
-<div class="profile-edit">
-  <div class="profile-edit__photo">
-      <img class="profile-edit__image" src="user.png" alt="userPhoto">
-  </div>
-  <form action="" class="profile-edit__form form-block">
-    <div class="profile-edit__data">
-      {{> input type='text' name='first_name' label='First name' placeholder='Ivan' value='Alexander'}}
-      {{> input type='text' name='second_name' label='Second name' placeholder='Ivanov' value=''}}
-      {{> input type='text' name='login' label='Login' placeholder='IvanIvanov' value=''}}
-      {{> input type='email' name='email' label='Email' placeholder='ivanov@gmail.com' value=''}}
-      {{> input type='tel' name='phone' label='Phone' placeholder='+71234567890' value=''}}
-      {{> input type='text' name='display_name' label='Chat name' placeholder='Иван' value=''}}
-    </div>
-    <div class="profile-edit__btn">
-      {{> button text='Save' type='submit'}}
-    </div>
-  </form>
+<div class="profile-edit__photo">
+    <img class="profile-edit__image" src="user.png" alt="userPhoto">
 </div>
+<form id="formProfileEdit" action="" class="profile-edit__form form-block">
+  <div class="profile-edit__data">
+    {{{ input }}}
+  </div>
+  <div class="profile-edit__btn">
+    {{{ button }}}
+  </div>
+</form>

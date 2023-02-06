@@ -1,9 +1,12 @@
-import Handlebars from 'handlebars';
-import tpl from './tpl.hbs';
+import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
 
-Handlebars.registerPartial('button', tpl);
-
-export default (text) => {
-    return tpl({ text });
+export default class Button extends Block {
+  render() {
+    return this.compile(tpl, {
+      type: this._props.type,
+      text: this._props.text,
+    });
+  }
 }

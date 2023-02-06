@@ -1,15 +1,11 @@
-<div class="profile-password">
-  <div class="profile-password__photo">
-      <img class="profile-password__image" src="user.png" alt="userPhoto">
-  </div>
-  <form action="" class="profile-password__form form-block">
-    <div class="profile-password__data">
-      {{> input type='password' name='oldPassword' label='Old password'}}
-      {{> input type='password' name='newPassword' label='New password'}}
-      {{> input type='password' name='newPassword' label='Repeat new password'}}
-    </div>
-    <div class="profile-password__btn">
-      {{> button text='Save' type='submit'}}
-    </div>
-  </form>
+<div class="profile-password__photo">
+    <img class="profile-password__image" src="user.png" alt="userPhoto">
 </div>
+<form id="formPassword" action="" class="profile-password__form form-block">
+  <div class="profile-password__data">
+    {{{ input }}}
+  </div>
+  <div class="profile-password__btn">
+    {{{ button }}}
+  </div>
+</form>

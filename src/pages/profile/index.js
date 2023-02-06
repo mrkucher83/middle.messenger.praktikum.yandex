@@ -1,11 +1,26 @@
-import Handlebars from "handlebars";
-import tpl from './tpl.hbs';
+import tpl from 'bundle-text:./tpl.hbs';
+import Block from '../../services/Block';
 import './style.scss';
-import input from '../../components/input';
-import button from '../../components/button';
+import Input from '../../components/input';
+import { profileInputs } from '../../data';
 
-Handlebars.registerPartial('profile', tpl);
-
-export default (props = {}) => {
-    return tpl(props);
+export class Profile extends Block {
+  render() {
+    return this.compile(tpl, {
+      attr: this._props.attr,
+      input: this._props.input,
+    });
+  }
 }
+
+export const profile = new Profile('div', {
+  attr: {
+    class: 'profile',
+  },
+  input: new Input('div', {
+    attr: {
+      class: 'input',
+    },
+    inputs: profileInputs,
+  }),
+});
