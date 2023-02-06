@@ -185,6 +185,7 @@ export default class Block {
     }
   }
 
+  // @ts-ignore
   componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
     console.log(oldProps, newProps)
     return true;
