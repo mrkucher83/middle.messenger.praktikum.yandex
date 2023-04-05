@@ -25,6 +25,14 @@ export default class Validator extends Block {
         error.style.visibility = (el.name in this._validatedInputs)
           ? 'visible'
           : 'hidden';
+
+        let info: HTMLElement | null = document.querySelector(`#info-${el.name}`);
+        error.addEventListener('mouseover', () => {
+          info!.style.visibility = 'visible';
+        })
+        error.addEventListener('mouseleave', () => {
+          info!.style.visibility = 'hidden';
+        })
       }
     });
   }
