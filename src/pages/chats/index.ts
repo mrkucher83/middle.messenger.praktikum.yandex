@@ -16,14 +16,6 @@ export class Chats extends Block {
       isAttachOpen: this._props.isAttachOpen,
     });
   }
-
-  _addEvents() {
-    this._element.querySelector('button').addEventListener('click', this._props.events.click);
-    this._element.querySelectorAll('input')
-      .forEach(input => input.addEventListener('blur', this._props.events.blur, true));
-
-    super._addEvents();
-  }
 }
 
 export const chats = new Chats('div', {
@@ -46,64 +38,65 @@ export const chats = new Chats('div', {
   isAddOpen: false,
   isAttachOpen: false,
   events: {
-    'click': function (event) {
+    'click': function (event: Event) {
       if (event
-        && event.target.className === 'bottom__form-send'
-        || event.target.tagName === 'BUTTON') {
+        && (event.target as HTMLFormElement).className === 'bottom__form-send'
+        || (event.target as HTMLFormElement).tagName === 'BUTTON') {
         event.preventDefault();
         event.stopPropagation();
 
         const formElement = document.getElementById('sendMessage');
-        const formData = new FormData(formElement);
+        const formData = new FormData(formElement as HTMLFormElement);
 
         // добавление отправленного сообщения в массив сообщений
         if (!formData.get('message')) {
           alert('Поле сообщения не должно быть пустым');
         } else {
-          document.querySelector('.bottom__form-input').value = '';
+          (document.querySelector('.bottom__form-input') as HTMLInputElement).value = '';
           const time = new Date();
 
           messages.push({
             owner: 'me',
-            text: formData.get('message'),
+            text: formData.get('message') as string,
             time: `${time.getHours()}:${time.getMinutes()}`,
           });
 
+          // @ts-ignore
           chats._children.message.setProps({
             messages,
+          });
+
+          console.log({
+            message: formData.get('message'),
           });
         }
 
         // прокрутка вниз до последнего сообщения
         const wall = document.querySelectorAll('.message');
         wall[wall.length - 1].scrollIntoView({ block: 'end', behavior: 'smooth' });
-
-        console.log({
-          message: formData.get('message'),
-        });
       }
 
-      if (event && event.target.className === 'chats__side-send') {
+      if (event && (event.target as HTMLFormElement).className === 'chats__side-send') {
         event.preventDefault();
         event.stopPropagation();
 
         const formElement = document.getElementById('search-user-form');
-        const formData = new FormData(formElement);
+        const formData = new FormData(formElement as HTMLFormElement);
 
-        document.querySelector('.chats__side-search').value = '';
+        (document.querySelector('.chats__side-search') as HTMLInputElement).value = '';
 
         console.log({
           user: formData.get('user'),
         });
       }
 
-      if (event && event.target.className === 'add-user') {
+      if (event && (event.target as HTMLFormElement).className === 'add-user') {
         chats.setProps({
           isAddOpen: !chats._props.isAddOpen,
         });
       }
 
-      if (event && event.target.className === 'bottom__upload') {
+      if (event && (event.target as HTMLFormElement).className === 'bottom__upload') {
         chats.setProps({
           isAttachOpen: !chats._props.isAttachOpen,
         });
