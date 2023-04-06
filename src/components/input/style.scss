@@ -2,19 +2,45 @@
 
 .input {
   width: 100%;
+  position: relative;
 
   &__label {
     font-size: 9px;
     color: $color-grey;
   }
-}
 
-input{
-  border: none;
-  border-bottom: 2px solid $color-primary;
-  height: 40px;
-  width: 100%;
-  margin-bottom: 20px;
-  font-size: 18px;
-  outline: 0;
+  &__item {
+    border: none;
+    border-bottom: 2px solid $color-primary;
+    height: 40px;
+    width: 100%;
+    font-size: 18px;
+    outline: 0;
+  }
+
+  &__validation {
+    visibility: hidden;
+    font-size: 8px;
+    color: $color-red;
+    cursor: pointer;
+    height: 10px;
+    margin-bottom: 12px;
+  }
+
+  &__information {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid $color-light-grey;
+    border-radius: 5px;
+    visibility: hidden;
+    padding: 5px;
+    background-color: $color-light-grey;
+    color: $color-usual-text;
+    font-size: 12px;
+    line-height: 1.5;
+    box-shadow: 0 0 6px rgba(0 0 0 / 14%);
+  }
 }

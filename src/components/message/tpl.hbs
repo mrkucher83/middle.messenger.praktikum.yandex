@@ -1,0 +1,9 @@
+{{#each messages}}
+  <div class="message {{ owner }}">
+    {{#if image}}
+      <img class="message__image" src="{{ image }}" alt="image">
+    {{/if}}
+    <p class="message__text">{{ text }}</p>
+    <p class="message__time">{{ time }}</p>
+  </div>
+{{/each}}

@@ -1,14 +1,16 @@
-<div class="input">
-    <label for="{{ name }}" class="input__label">{{label}}</label>
-    <input
-        type="{{ type }}"
-        id="{{ name }}"
-        name="{{ name }}"
-        placeholder="{{ placeholder }}"
-        minlength="4"
-        value="{{ value }}"
-        {{#if readonly}}
-        readonly
-        {{/if}}
-    >
-</div>
+{{#each inputs}}
+<label for="{{ name }}" class="input__label">{{label}}</label>
+<input
+    class="input__item"
+    type="{{ type }}"
+    id="{{ name }}"
+    name="{{ name }}"
+    placeholder="{{ placeholder }}"
+    value="{{ value }}"
+    {{#if readonly}}
+    readonly
+    {{/if}}
+>
+<p id="error-{{ name }}" class="input__validation">Неверный {{ label }}</p>
+<div id="info-{{ name }}" class="input__information">{{ info }}</div>
+{{/each}}

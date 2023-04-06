@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true,
+      "legacyDecorators": true
+    },
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "requireConfigFile": false
+  }
+}

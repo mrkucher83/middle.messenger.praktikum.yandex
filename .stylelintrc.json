@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "color-hex-case": "upper"
+  },
+  "ignoreFiles": [
+    "build/*",
+    "dist/*",
+    "node_modules/*",
+    ".parcel-cash/*"
+  ]
+}

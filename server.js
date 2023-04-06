@@ -9,9 +9,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('build'));
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build/index.html'));
+  res.sendFile(path.join(__dirname, 'build/index.html'));
 });
 
 app.listen(PORT, HOSTNAME, () => {
-    console.log(`App listening on ${HOSTNAME}:${PORT}`)
+  console.log(`App listening on http://${HOSTNAME}:${PORT}`);
 });
