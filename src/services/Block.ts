@@ -2,20 +2,20 @@ import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars';
 import  EventBus  from './EventBus';
 
+type Props = Record<string, any>;
+
 type Meta = {
   tagName: string;
-  props?: Record<string, any>
+  props?: Props;
 }
 
 interface Events {
   click?: (e: Event) => never;
   blur?: (e: Event) => never;
+  focus?: (e: Event) => never;
 }
 
-type PropsAndChildren = {
-  props?: Record<string, any>;
-  children?: Record<string, Block>;
-}
+type PropsAndChildren = Record<string, any>
 
 export default class Block {
   static EVENTS = {
@@ -25,7 +25,7 @@ export default class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  _props: Record<string, any>;
+  _props: Props;
   _children: ProxyHandler<Block>;
   _element: HTMLElement | null = null;
   _meta: Meta | null = null;
@@ -125,7 +125,7 @@ export default class Block {
 
   _getChildren(propsAndChildren: PropsAndChildren) {
     const children: Record<string, Block> = {};
-    const props: Record<string, unknown> = {};
+    const props: Props = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -138,7 +138,7 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template: string, props: Record<string, unknown>): DocumentFragment {
+  compile(template: string, props: Props): DocumentFragment {
     if(typeof props === 'undefined') {
       props = this._props;
     }
@@ -178,7 +178,7 @@ export default class Block {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
+  _componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if(response) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
@@ -186,12 +186,12 @@ export default class Block {
   }
 
   // @ts-ignore
-  componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
-    console.log(oldProps, newProps)
+  componentDidUpdate(oldProps: Props, newProps: Props) {
+    // console.log(oldProps, newProps)
     return true;
   }
 
-  setProps(nextProps: Record<string, any>) {
+  setProps(nextProps: Props) {
     if(!nextProps) {
       return;
     }
@@ -207,7 +207,7 @@ export default class Block {
     }
   }
 
-  _makePropsProxy(props: Record<string, any>): ProxyHandler<Block> {
+  _makePropsProxy(props: Props): ProxyHandler<Block> {
     const self = this;
     return new Proxy(props, {
       get(target, prop) {

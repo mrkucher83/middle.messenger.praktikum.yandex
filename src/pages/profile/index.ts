@@ -5,7 +5,7 @@ import Input from '../../components/input';
 import { profileInputs } from '../../data';
 
 export class Profile extends Block {
-  render() {
+  render(): DocumentFragment {
     return this.compile(tpl, {
       attr: this._props.attr,
       input: this._props.input,

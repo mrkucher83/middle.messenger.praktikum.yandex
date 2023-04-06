@@ -51,19 +51,32 @@ export const messages = [
       '          с пленкой', time: '11:39' },
 ];
 
+const requirements = {
+  login: 'От 3 до 20 символов, латиница, может содержать цифры, ' +
+        'но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)',
+  password: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра.',
+  name: 'Латиница или кириллица, первая буква должна быть заглавной, ' +
+    'без пробелов и без цифр, нет спецсимволов (допустим только дефис).',
+  email: 'Латиница, может включать цифры и спецсимволы вроде дефиса, ' +
+    'обязательно должна быть «собака» (@) и точка после неё, ' +
+    'но перед точкой обязательно должны быть буквы.',
+  phone: 'От 10 до 15 символов, состоит из цифр, может начинается с плюса.',
+  message: 'Не должно быть пустым.',
+}
+
 export const authInputs = [
-  { type: 'text', name: 'login', label: 'Login', placeholder: 'IvanIvanov' },
-  { type: 'password', name: 'password', label: 'Password', placeholder: '' },
+  { type: 'text', name: 'login', label: 'Login', placeholder: 'IvanIvanov', info: requirements.login },
+  { type: 'password', name: 'password', label: 'Password', placeholder: '', info: requirements.password },
 ];
 
 export const registrationInputs = [
-  { type: 'text', name: 'first_name', label: 'First name', placeholder: 'Ivan' },
-  { type: 'text', name: 'second_name', label: 'Second name', placeholder: 'Ivanov' },
-  { type: 'text', name: 'login', label: 'Login', placeholder: 'IvanIvanov' },
-  { type: 'email', name: 'email', label: 'Email', placeholder: 'ivanov@gmail.com' },
-  { type: 'tel', name: 'phone', label: 'Phone', placeholder: '+71234567890' },
-  { type: 'password', name: 'password', label: 'Password', placeholder: '' },
-  { type: 'password', name: 'password_repeat', label: 'Repeat password', placeholder: '' },
+  { type: 'text', name: 'first_name', label: 'First name', placeholder: 'Ivan', info: requirements.name },
+  { type: 'text', name: 'second_name', label: 'Second name', placeholder: 'Ivanov', info: requirements.name },
+  { type: 'text', name: 'login', label: 'Login', placeholder: 'IvanIvanov', info: requirements.login },
+  { type: 'email', name: 'email', label: 'Email', placeholder: 'ivanov@gmail.com', info: requirements.email },
+  { type: 'tel', name: 'phone', label: 'Phone', placeholder: '+71234567890', info: requirements.phone },
+  { type: 'password', name: 'password', label: 'Password', placeholder: '', info: requirements.password },
+  { type: 'password', name: 'password_repeat', label: 'Repeat password', placeholder: '', info: requirements.password },
 ];
 
 export const profileInputs = [
@@ -76,16 +89,16 @@ export const profileInputs = [
 ];
 
 export const profileEditInputs = [
-  { type: 'text', name: 'first_name', label: 'First name', placeholder: 'Ivan', value: 'Ivan' },
-  { type: 'text', name: 'second_name', label: 'Second name', placeholder: 'Ivanov', value: 'Ivanov' },
-  { type: 'text', name: 'login', label: 'Login', placeholder: 'IvanIvanov', value: 'IvanIvanov' },
-  { type: 'email', name: 'email', label: 'Email', placeholder: 'ivanov@gmail.com', value: 'ivanov@gmail.com' },
-  { type: 'tel', name: 'phone', label: 'Phone', placeholder: '+71234567890', value: '+71234567890' },
-  { type: 'text', name: 'display_name', label: 'Chat name', placeholder: 'Ivan', value: 'Ivan' },
+  { type: 'text', name: 'first_name', label: 'First name', placeholder: 'Ivan', value: 'Ivan', info: requirements.name },
+  { type: 'text', name: 'second_name', label: 'Second name', placeholder: 'Ivanov', value: 'Ivanov', info: requirements.name },
+  { type: 'text', name: 'login', label: 'Login', placeholder: 'IvanIvanov', value: 'IvanIvanov', info: requirements.login },
+  { type: 'email', name: 'email', label: 'Email', placeholder: 'ivanov@gmail.com', value: 'ivanov@gmail.com', info: requirements.email },
+  { type: 'tel', name: 'phone', label: 'Phone', placeholder: '+71234567890', value: '+71234567890', info: requirements.phone },
+  { type: 'text', name: 'display_name', label: 'Chat name', placeholder: 'Ivan', value: 'Ivan', info: requirements.name },
 ];
 
 export const profilePasswordInputs = [
-  { type: 'password', name: 'oldPassword', label: 'Old password', placeholder: '' },
-  { type: 'password', name: 'newPassword', label: 'New password', placeholder: '' },
-  { type: 'password', name: 'newPasswordRepeat', label: 'Repeat new password', placeholder: '' },
+  { type: 'password', name: 'oldPassword', label: 'Old password', placeholder: '', info: requirements.password },
+  { type: 'password', name: 'newPassword', label: 'New password', placeholder: '', info: requirements.password },
+  { type: 'password', name: 'newPasswordRepeat', label: 'Repeat new password', placeholder: '', info: requirements.password },
 ];

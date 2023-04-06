@@ -13,6 +13,7 @@ type Options = {
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>;
 
 function queryStringify(data: Record<string, unknown>): string {
   if (typeof data !== 'object') {
@@ -26,19 +27,19 @@ function queryStringify(data: Record<string, unknown>): string {
 }
 
 export default class HTTPTransport {
-  get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-      return this.request(url, {...options, method: METHOD.GET});
+  get: HTTPMethod = (url, options = {}) => {
+      return this.request(url, {...options, method: METHOD.GET}, options.timeout);
   }
 
-  post = (url: string, options: OptionsWithoutMethod = {}) => {
+  post: HTTPMethod = (url, options = {}) => {
       return this.request(url, {...options, method: METHOD.POST}, options.timeout);
   };
 
-  put = (url: string, options: OptionsWithoutMethod = {}) => {
+  put: HTTPMethod = (url, options = {}) => {
       return this.request(url, {...options, method: METHOD.PUT}, options.timeout);
   };
 
-  delete = (url: string, options: OptionsWithoutMethod = {}) => {
+  delete: HTTPMethod = (url, options = {}) => {
       return this.request(url, {...options, method: METHOD.DELETE}, options.timeout);
   };
 

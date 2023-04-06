@@ -1,7 +1,10 @@
-export default function validateInput(event) {
-  const result = {};
+type TResult = Record<string, boolean>;
+type TRegEx = Record<string, RegExp>;
 
-  const regEx = {
+export default function validateInput(event: Event) {
+  const result: TResult = {};
+
+  const regEx: TRegEx = {
     first_name: /^[A-Z]{1}[-A-z]{1,}|[А-Я]{1}[-А-я]{1,}$/,
     second_name: /^[A-Z]{1}[-A-z]{1,}|[А-Я]{1}[-А-я]{1,}$/,
     display_name: /^[A-Z]{1}[-A-z]{1,}|[А-Я]{1}[-А-я]{1,}$/,
@@ -15,8 +18,10 @@ export default function validateInput(event) {
     password_repeat: /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,40}/g,
   };
 
-  if(!regEx[event.target.name].test(event.target.value)) {
-    result[event.target.name] = false;
+  let target = event.target as HTMLFormElement;
+
+  if(!regEx[target.name].test(target.value)) {
+    result[target.name] = false;
   }
 
   return result;
