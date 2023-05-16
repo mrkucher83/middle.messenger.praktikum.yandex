@@ -4,6 +4,7 @@ import './style.scss';
 import Card from '../../components/card';
 import { cards, messages } from '../../data';
 import Message from '../../components/message';
+import {router} from '../../index';
 
 export class Chats extends Block {
   render() {
@@ -20,7 +21,7 @@ export class Chats extends Block {
 
 export const chats = new Chats('div', {
   attr: {
-    class: 'chats',
+    class: 'chats-block',
   },
   card: new Card('div', {
     attr: {
@@ -100,6 +101,11 @@ export const chats = new Chats('div', {
         chats.setProps({
           isAttachOpen: !chats._props.isAttachOpen,
         });
+      }
+
+      if (event && (event.target as HTMLFormElement).className === 'chats__side-link') {
+        event.preventDefault();
+        router.go('/profile');
       }
     },
   },

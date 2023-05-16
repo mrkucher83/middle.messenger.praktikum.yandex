@@ -4,6 +4,7 @@ import './style.scss';
 import Input from '../../components/input';
 import { authInputs } from '../../data';
 import Button from '../../components/button';
+import { router } from '../../index';
 
 export class Auth extends Validator {
   render() {
@@ -17,7 +18,7 @@ export class Auth extends Validator {
 
 export const auth = new Auth('div', {
   attr: {
-    class: 'auth',
+    class: 'auth-block',
   },
   input: new Input('div', {
     attr: {
@@ -49,6 +50,11 @@ export const auth = new Auth('div', {
             password: formData.get('password'),
           });
         }
+      }
+
+      if (event && (event.target as HTMLFormElement).className === 'auth__link') {
+        event.preventDefault();
+        router.go('/sign-up');
       }
     },
     'blur': (event: Event) => auth.validate(event),

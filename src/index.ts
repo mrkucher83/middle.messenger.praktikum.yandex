@@ -1,10 +1,5 @@
-import tpl from 'bundle-text:./index.hbs';
+import Router from './services/Router';
 import './style.scss';
-
-import getRoute from './utils/routing';
-import render from './utils/renderDOM';
-
-import Block from './services/Block';
 
 import { notFound } from './pages/404';
 import { serverError } from './pages/500';
@@ -15,32 +10,16 @@ import { profileEdit } from './pages/profile-edit';
 import { profilePassword } from './pages/profile-password';
 import { chats } from './pages/chats';
 
-class Messenger extends Block {
-  render() {
-    return this.compile(tpl, {
-      auth: this._props.auth,
-      registration: this._props.registration,
-      chats: this._props.chats,
-      profile: this._props.profile,
-      profileEdit: this._props.profileEdit,
-      profilePassword: this._props.profilePassword,
-      notFound: this._props.notFound,
-      serverError: this._props.serverError,
-      route: this._props.route,
-    });
-  }
-}
 
-const messenger = new Messenger('div', {
-  auth,
-  registration,
-  chats,
-  profile,
-  profileEdit,
-  profilePassword,
-  notFound,
-  serverError,
-  route: getRoute(),
-});
+export const router = new Router("#root");
 
-render('#root', messenger);
+router
+  .use("/", auth)
+  .use("/sign-up", registration)
+  .use("/settings", profileEdit)
+  .use("/profile", profile)
+  .use("/password-change", profilePassword)
+  .use("/messenger", chats)
+  .use("/server-error", serverError)
+  .use("/not-found", notFound)
+  .start();

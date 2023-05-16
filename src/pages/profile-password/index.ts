@@ -17,7 +17,7 @@ export class ProfilePassword extends Validator {
 
 export const profilePassword = new ProfilePassword('div', {
   attr: {
-    class: 'profile-password',
+    class: 'profile-password-block',
   },
   input: new Input('div', {
     attr: {

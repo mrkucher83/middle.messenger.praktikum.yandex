@@ -17,7 +17,7 @@ export class ProfileEdit extends Validator {
 
 export const profileEdit = new ProfileEdit('div', {
   attr: {
-    class: 'profile-edit',
+    class: 'profile-edit-block',
   },
   input: new Input('div', {
     attr: {

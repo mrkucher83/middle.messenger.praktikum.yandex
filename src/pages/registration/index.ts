@@ -4,6 +4,7 @@ import './style.scss';
 import Input from '../../components/input';
 import { registrationInputs } from '../../data';
 import Button from '../../components/button';
+import { router } from '../../index';
 
 export class Registration extends Validator {
   render() {
@@ -17,7 +18,7 @@ export class Registration extends Validator {
 
 export const registration = new Registration('div', {
   attr: {
-    class: 'registration',
+    class: 'registration-block',
   },
   input: new Input('div', {
     attr: {
@@ -64,6 +65,11 @@ export const registration = new Registration('div', {
             passwordRepeat: formData.get('password_repeat'),
           });
         }
+      }
+
+      if (event && (event.target as HTMLFormElement).className === 'auth__link') {
+        event.preventDefault();
+        router.go('/');
       }
     },
     'blur': (event: Event) => registration.validate(event),

@@ -2,7 +2,7 @@ type PlainObject<T = any> = {
   [k in string]: T;
 };
 
-function isEqual(a: PlainObject, b: PlainObject): boolean {
+export default function isEqual(a: PlainObject, b: PlainObject): boolean {
   const keysA = Object.keys(a);
   const keysB = Object.keys(b);
 

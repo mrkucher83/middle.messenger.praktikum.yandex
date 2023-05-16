@@ -1,6 +1,7 @@
 import tpl from 'bundle-text:./tpl.hbs';
 import Block from '../../services/Block';
 import './style.scss';
+import {router} from '../../index';
 
 export class ServerError extends Block {
   render(): DocumentFragment {
@@ -13,5 +14,13 @@ export class ServerError extends Block {
 export const serverError = new ServerError('div', {
   attr: {
     class: 'server-error',
+  },
+  events: {
+    'click': (event: Event) => {
+      event.preventDefault();
+      if (event && (event.target as HTMLFormElement).className === 'server-error__link') {
+        router.go('/messenger');
+      }
+    }
   },
 });

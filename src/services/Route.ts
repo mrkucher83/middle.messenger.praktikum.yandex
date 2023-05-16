@@ -1,4 +1,3 @@
-import isEqual from '../utils/isEqual';
 import render from '../utils/renderDOM';
 import Block from './Block';
 
@@ -11,7 +10,7 @@ export default class Route {
   constructor(pathname: string, view: Block, props: any) {
     this._pathname = pathname;
     this._blockClass = view;
-    //this._block = null;
+    this._block = null;
     this._props = props;
   }
 
@@ -29,13 +28,13 @@ export default class Route {
   }
 
   match(pathname: string): boolean {
-    return isEqual(pathname, this._pathname);
+    return this._pathname === pathname;
   }
 
   render() {
     if (!this._block) {
-      // @ts-ignore
-      this._block = new this._blockClass();
+      // this._block = new this._blockClass();
+      this._block = this._blockClass;
       render(this._props.rootQuery, this._block!);
       return;
     }
