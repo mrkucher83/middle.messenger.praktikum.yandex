@@ -5,6 +5,8 @@ import Input from '../../components/input';
 import { registrationInputs } from '../../data';
 import Button from '../../components/button';
 import { router } from '../../index';
+import authController from '../../controllers/AuthController';
+import { SignUpModel } from '../../types/userTypes';
 
 export class Registration extends Validator {
   render() {
@@ -55,15 +57,16 @@ export const registration = new Registration('div', {
         } else if (formData.get('password') !== formData.get('password_repeat')) {
           alert('Пароли должны совпадать');
         } else {
-          console.log({
-            firstName: formData.get('first_name'),
-            secondName: formData.get('second_name'),
+          const data = {
+            first_name: formData.get('first_name'),
+            second_name: formData.get('second_name'),
             login: formData.get('login'),
             email: formData.get('email'),
             phone: formData.get('phone'),
             password: formData.get('password'),
-            passwordRepeat: formData.get('password_repeat'),
-          });
+          }
+
+          authController.signUp(data as SignUpModel);
         }
       }
 

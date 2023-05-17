@@ -25,3 +25,7 @@ export interface EditPasswordModel {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface EditAvatarModel {
+  avatar: FormData;
+}

@@ -68,6 +68,8 @@ export default class HTTPTransport {
               : targetURL,
       );
 
+      xhr.setRequestHeader('Content-type', 'application/json');
+
       Object.keys(headers).forEach(key => {
           xhr.setRequestHeader(key, headers[key]);
       });
@@ -82,6 +84,9 @@ export default class HTTPTransport {
       xhr.timeout = timeout;
       xhr.ontimeout = () =>
           reject(new Error('время вышло!'));
+
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
       if (isGet || !data) {
           xhr.send();

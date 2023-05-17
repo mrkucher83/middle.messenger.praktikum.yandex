@@ -1,5 +1,5 @@
 import HTTPTransport from '../services/fetch';
-import { EditProfileModel, EditPasswordModel } from '../types/userTypes';
+import {EditProfileModel, EditPasswordModel, EditAvatarModel} from '../types/userTypes';
 
 const userApiInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/user');
 
@@ -8,7 +8,7 @@ class UserApi {
     return userApiInstance.put('/profile', { data });
   }
 
-  editAvatar(data: FormData) {
+  editAvatar(data: EditAvatarModel) {
     return userApiInstance.put('/profile/avatar', { data });
   }
 

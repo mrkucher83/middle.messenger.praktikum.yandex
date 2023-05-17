@@ -3,7 +3,8 @@ import Block from '../../services/Block';
 import './style.scss';
 import Input from '../../components/input';
 import { profileInputs } from '../../data';
-import {router} from '../../index';
+import { router } from '../../index';
+import authController from '../../controllers/AuthController';
 
 export class Profile extends Block {
   render(): DocumentFragment {
@@ -36,7 +37,7 @@ export const profile = new Profile('div', {
       }
 
       if (event && (event.target as HTMLFormElement).className === 'profile-container__links-item red') {
-        router.go('/');
+        authController.logout();
       }
     }
   }

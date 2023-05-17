@@ -3,7 +3,8 @@ import {
   // chatListModel,
   createChatModel,
   addUserModel,
-  deleteUserModel } from '../types/chatTypes';
+  deleteUserModel
+} from '../types/chatTypes';
 
 const chatsApiInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/chats');
 

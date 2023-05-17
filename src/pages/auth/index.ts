@@ -4,7 +4,9 @@ import './style.scss';
 import Input from '../../components/input';
 import { authInputs } from '../../data';
 import Button from '../../components/button';
+import authController from '../../controllers/AuthController';
 import { router } from '../../index';
+import { SignInModel } from '../../types/userTypes';
 
 export class Auth extends Validator {
   render() {
@@ -45,10 +47,11 @@ export const auth = new Auth('div', {
         } else if (Object.keys(auth._validatedInputs).length) {
           alert('Проверьте правильность заполнения полей');
         } else {
-          console.log({
+          const data = {
             login: formData.get('login'),
             password: formData.get('password'),
-          });
+          };
+          authController.signIn(data as SignInModel)
         }
       }
 
