@@ -27,6 +27,11 @@ function queryStringify(data: Record<string, unknown>): string {
 }
 
 export default class HTTPTransport {
+  private baseURL: string;
+
+  constructor(baseURL: string) {
+    this.baseURL = baseURL;
+  }
   get: HTTPMethod = (url, options = {}) => {
       return this.request(url, {...options, method: METHOD.GET}, options.timeout);
   }
@@ -45,6 +50,7 @@ export default class HTTPTransport {
 
   request(url: string, options: Options = { method: METHOD.GET }, timeout = 5000): Promise<XMLHttpRequest> {
     const {headers = {}, method, data} = options;
+    const targetURL = `${this.baseURL}${url}`;
 
     return new Promise((resolve, reject) => {
       if (!method) {
@@ -58,8 +64,8 @@ export default class HTTPTransport {
       xhr.open(
           method,
           isGet && !!data
-              ? `${url}${queryStringify(data)}`
-              : url,
+              ? `${targetURL}${queryStringify(data)}`
+              : targetURL,
       );
 
       Object.keys(headers).forEach(key => {
