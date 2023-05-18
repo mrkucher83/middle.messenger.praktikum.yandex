@@ -1,4 +1,4 @@
-type Callback = (event: Event) => never
+type Callback = (event: Event) => never | void
 
 type Events = {
   [key: string]: Array<Callback>;

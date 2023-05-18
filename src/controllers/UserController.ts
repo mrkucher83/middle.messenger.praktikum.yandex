@@ -12,6 +12,7 @@ class UserController {
         if (res.status === 200) {
           const { response } = res;
           store.set('user', response)
+          router.go('/profile');
         }
 
         if (res.status === 400 || res.status === 401) {
@@ -51,6 +52,10 @@ class UserController {
   editPassword(data: EditPasswordModel) {
     userApi.editPassword(data)
       .then(res => {
+        if (res.status === 200) {
+          alert('Пароль успешно изменен');
+          router.go('/profile');
+        }
         if (res.status === 400 || res.status === 401) {
           alert(res.response.reason)
         }

@@ -5,13 +5,39 @@ import Input from '../../components/input';
 import { profileInputs } from '../../data';
 import { router } from '../../index';
 import authController from '../../controllers/AuthController';
+import store, { StoreEvents } from '../../store';
 
 export class Profile extends Block {
+  userData: Array<any>;
+
+  constructor(...args: any[]) {
+    super(...args);
+
+    store.on(StoreEvents.Updated, () => {
+      this.setProps(store.getState());
+    })
+  }
+
+
+  componentDidMount() {
+    authController.getUser()
+
+    if (store.getState().user) {
+      this.userData = profileInputs.map(el => {
+        el.value = store.getState().user[el.name]
+        return el;
+      });
+    }
+
+
+    store.set('profile', this.userData);
+
+    // @ts-ignore
+    this._children.input.setProps({inputs: this.userData});
+  }
+
   render(): DocumentFragment {
-    return this.compile(tpl, {
-      attr: this._props.attr,
-      input: this._props.input,
-    });
+    return this.compile(tpl, this._props);
   }
 }
 
@@ -23,7 +49,7 @@ export const profile = new Profile('div', {
     attr: {
       class: 'input',
     },
-    inputs: profileInputs,
+    inputs: store.getState().profile,
   }),
   events: {
     'click': (event: Event) => {

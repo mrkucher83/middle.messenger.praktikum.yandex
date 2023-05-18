@@ -4,14 +4,12 @@ import './style.scss';
 import Input from '../../components/input';
 import { profilePasswordInputs } from '../../data';
 import Button from '../../components/button';
+import userController from '../../controllers/UserController';
+import {EditPasswordModel} from '../../types/userTypes';
 
 export class ProfilePassword extends Validator {
   render() {
-    return this.compile(tpl, {
-      attr: this._props.attr,
-      input: this._props.input,
-      button: this._props.button,
-    });
+    return this.compile(tpl, this._props);
   }
 }
 
@@ -50,6 +48,13 @@ export const profilePassword = new ProfilePassword('div', {
         } else if (formData.get('newPassword') !== formData.get('newPasswordRepeat')) {
           alert('Пароли должны совпадать');
         } else {
+          const data = {
+            oldPassword: formData.get('oldPassword'),
+            newPassword: formData.get('newPassword'),
+          }
+
+          userController.editPassword(data as EditPasswordModel);
+
           console.log({
             oldPassword: formData.get('oldPassword'),
             newPassword: formData.get('newPassword'),

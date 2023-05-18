@@ -4,9 +4,6 @@ import './style.scss';
 
 export default class Input extends Block {
   render(): DocumentFragment {
-    return this.compile(tpl, {
-      attr: this._props.attr,
-      inputs: this._props.inputs,
-    });
+    return this.compile(tpl, this._props);
   }
 }
